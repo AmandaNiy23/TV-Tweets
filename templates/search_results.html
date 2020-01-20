@@ -1,0 +1,22 @@
+{%extends "index.html"%}
+{% block content %}
+    <div>
+      {% for key, value in result.items() %}
+
+          {% for show in value %}
+            <div class="list-item">
+                <div class="img-container">
+                  <a href="https://next-episode.net/">
+                    <img src="{{ show.image }}" alt="img">
+                  </a>
+                </div>
+                <a href={{url_for('show', name=show.link)}}>
+                  <h1>{{show.name}}</h1>
+                </a>
+                <p class="text">{{show.summary}}</p>
+
+            </div>
+          {% endfor %}
+      {% endfor %}
+    </div>
+{%endblock content%}}

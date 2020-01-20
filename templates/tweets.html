@@ -1,0 +1,32 @@
+{%extends "index.html"%}
+{% block content %}
+      {% for key, value in result.items() %}
+
+          {% for tweet in value %}
+            <div class="list-item">
+                <li class="tweet">
+                    <div class="tw-left">
+                      <a href="https://twitter.com/">
+                        <img src="{{ tweet.user_image }}" alt="img">
+                      </a>
+                    </div>
+
+                    <div class="tw-right">
+                      <h4 class="name"> {{tweet.name}}
+                        <span class="handle"> {{tweet.user_handle}}</span>
+                        <span class="time" data-time= >{{tweet.date}}</span>
+                      </h4>
+                      <p class="text">{{tweet.tweet_text}}</p>
+                      {% if tweet.image != "" %}
+                        <a href="https://twitter.com/">
+                          <img src="{{ tweet.image }}" class="center" height="80%" width="80%">
+                        </a>
+                      {% endif %}
+                    </div>
+                </li>
+            </div>
+          {% endfor %}
+
+      {% endfor %}
+
+{%endblock content%}}

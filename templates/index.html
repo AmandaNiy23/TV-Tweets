@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Intro</title>
+  </head>
+  <body style="background-color:#1b384a">
+
+    <div>
+      <img src="{{url_for('static', filename='logo2.jpg')}}" alt"logo-img" class="center" width="400" height="200">
+    </div>
+    
+      <form class="search-bar" action="/search" method="POST">
+        <input type="text" placeholder="Search TV Show.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{%extends "index.html"%}
+{% block content %}
+
+  {% for key, value in result.items() %}
+    <table style="width:100%">
+      <tr>
+        <th>Episode</th>
+        <th>Air Date</th>
+        <th>Episode Name</th>
+      </tr>
+      {% for episode in value %}
+        <tr>
+          <td>{{episode.episode_number}}</td>
+          <td>{{episode.date}}</td>
+          <td>
+            <a href={{url_for('get_tweets', show_name = name, date = episode.date, time= "7 Pm")}}>
+              {{episode.name}}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table
+  {% endfor %}
+{%endblock content%}}
