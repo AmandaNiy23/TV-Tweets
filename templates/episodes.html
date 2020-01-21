@@ -13,7 +13,7 @@
           <td>{{episode.episode_number}}</td>
           <td>{{episode.date}}</td>
           <td>
-            <a href={{url_for('get_tweets', show_name = name, date = episode.date, time= "7 Pm")}}>
+            <a href={{url_for('get_tweets', show_name = name, episode_name = episode.name, date = episode.date)}}>
               {{episode.name}}
             </a>
           </td>

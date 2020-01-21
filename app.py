@@ -24,14 +24,12 @@ months = {
 
 @app.route("/")                   # at the end point /
 def index():                      # call method hello
-    return render_template('index.html')
+    return render_template('home.html')
 
 
-@app.route("/<show_name>/<date>/<time>")
-def get_tweets(show_name, date, time):
-    print(show_name)
-    print(date)
-    print(time)
+@app.route("/<show_name>/<episode_name>/<date>")
+def get_tweets(show_name, episode_name, date):
+
     date = date.replace(',', '')
     date = date.split()
     start_date = datetime.datetime(int(date[3]),int(months.get(date[1])),int(date[2]))
@@ -41,10 +39,10 @@ def get_tweets(show_name, date, time):
     end_date_str = '{:%Y-%m-%d}'.format(end_date)
 
     result =  {
-        'list' : scrape_tweets(show_name, start_date_str, end_date_str, time),
+        'list' : scrape_tweets(show_name, start_date_str, end_date_str),
 
         }
-    return render_template('tweets.html', result=result)
+    return render_template('tweets.html', result=result, show_name=show_name.replace("-", " ").title(), episode_name=episode_name)
 
 @app.route("/show/<name>/<season>")
 def get_seasons_episodes(name, season):

@@ -7,9 +7,11 @@
             <img src="{{ show.image }}">
           </a>
         </div>
+        
         <h2>Previous Episode:</h2>
-        <a href={{url_for('get_tweets', show_name = show.name, date = show.prev_date, time= show.air_time)}}>
-          <h1 class="center">{{show.prev_date}}</h1>
+
+        <a href={{url_for('get_tweets', show_name = show.name, episode_name = show.episode_name, date = show.prev_date)}}>
+          <h1 class="center">{{show.episode_name}} - {{show.prev_date}}</h1>
         </a>
 
         <h2>All Seasons:</h2>

@@ -1,5 +1,7 @@
 {%extends "index.html"%}
 {% block content %}
+
+      <h1 class="center">{{show_name}} - {{episode_name}}</h1>
       {% for key, value in result.items() %}
 
           {% for tweet in value %}
@@ -17,8 +19,11 @@
                         <span class="time" data-time= >{{tweet.date}}</span>
                       </h4>
                       <p class="text">{{tweet.tweet_text}}</p>
+                      <a href="{{tweet.tweet_link}}">
+                        <p><small>Go to tweet</small></p>
+                      </a>
                       {% if tweet.image != "" %}
-                        <a href="https://twitter.com/">
+                        <a href="https://twitter.com/" target="_blank">
                           <img src="{{ tweet.image }}" class="center" height="80%" width="80%">
                         </a>
                       {% endif %}
