@@ -1,4 +1,4 @@
-#!/home/amanda/TV-Tweets/tvtweets_env/bin/python
+#!/home/amanda/TV-Tweets/TV-Tweets/tvtweets_env/bin/python
 
 import sys
 import getopt
