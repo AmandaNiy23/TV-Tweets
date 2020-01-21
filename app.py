@@ -29,7 +29,7 @@ def index():                      # call method hello
 
 @app.route("/<show_name>/<date>")
 def get_tweets(show_name, date):
-    print(date)
+    tweet_query = show_name.replace("-", " ").title()
     start_date = convert_date(date)
     end_date = addDays(start_date ,1)
 
@@ -37,10 +37,10 @@ def get_tweets(show_name, date):
     end_date_str = '{:%Y-%m-%d}'.format(end_date)
 
     result =  {
-        'list' : scrape_tweets(show_name, start_date_str, end_date_str),
+        'list' : scrape_tweets(tweet_query, start_date_str, end_date_str),
 
         }
-    return render_template('tweets.html', result=result, date=date, tweet_query=show_name, show_name=show_name)
+    return render_template('tweets.html', result=result, date=date, tweet_query=tweet_query, show_name=show_name)
 
 def convert_date(datestring):
     date = datestring.replace(',', '')
