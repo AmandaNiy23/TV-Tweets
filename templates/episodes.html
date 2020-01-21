@@ -1,6 +1,7 @@
 {%extends "index.html"%}
 {% block content %}
-
+  <h2>{{name.title()}} - {{season}}</h2>
+  <br>
   {% for key, value in result.items() %}
     <table style="width:100%">
       <tr>

@@ -23,8 +23,8 @@ months = {
 
 @app.route("/")                   # at the end point /
 def index():                      # call method hello
-    return "<h1>Welcome to our server !!</h1>"
-    #return render_template('home.html')
+
+    return render_template('home.html')
 
 
 @app.route("/<show_name>/<episode_name>/<date>")
@@ -52,7 +52,7 @@ def get_seasons_episodes(name, season):
     result =  {
         'episodes': get_season_info(name, season)
         }
-    return render_template('episodes.html', result=result, name=name)
+    return render_template('episodes.html', result=result, name=name, season=season.replace("-"," ").title())
 
 @app.route("/show/<name>")
 def show(name):
