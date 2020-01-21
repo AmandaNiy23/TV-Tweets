@@ -1,10 +1,8 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
-from flask_bootstrap import Bootstrap
 from tweets import search_show_options, get_show_info, scrape_tweets, get_season_info
 import datetime
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)        # create an app instance
+app = Flask(__name__)    # create an app instance
 
 months = {
     'Jan' : '1',
