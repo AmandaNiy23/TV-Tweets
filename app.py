@@ -22,7 +22,8 @@ months = {
 
 @app.route("/")                   # at the end point /
 def index():                      # call method hello
-    return render_template('home.html')
+    return "<h1>Welcome to our server !!</h1>"
+    #return render_template('home.html')
 
 
 @app.route("/<show_name>/<episode_name>/<date>")
