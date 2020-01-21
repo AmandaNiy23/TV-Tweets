@@ -27,13 +27,11 @@ def index():                      # call method hello
     return render_template('home.html')
 
 
-@app.route("/<show_name>/<episode_name>/<date>")
-def get_tweets(show_name, episode_name, date):
-
-    date = date.replace(',', '')
-    date = date.split()
-    start_date = datetime.datetime(int(date[3]),int(months.get(date[1])),int(date[2]))
-    end_date = start_date + datetime.timedelta(days=1)
+@app.route("/<show_name>/<date>")
+def get_tweets(show_name, date):
+    print(date)
+    start_date = convert_date(date)
+    end_date = addDays(start_date ,1)
 
     start_date_str = '{:%Y-%m-%d}'.format(start_date)
     end_date_str = '{:%Y-%m-%d}'.format(end_date)
@@ -42,7 +40,16 @@ def get_tweets(show_name, episode_name, date):
         'list' : scrape_tweets(show_name, start_date_str, end_date_str),
 
         }
-    return render_template('tweets.html', result=result, show_name=show_name.replace("-", " ").title(), episode_name=episode_name)
+    return render_template('tweets.html', result=result, date=date, tweet_query=show_name, show_name=show_name)
+
+def convert_date(datestring):
+    date = datestring.replace(',', '')
+    date = date.split()
+    return datetime.datetime(int(date[3]),int(months.get(date[1])),int(date[2]))
+
+
+def addDays(dateobj, numdays):
+    return dateobj + datetime.timedelta(days=numdays)
 
 @app.route("/show/<name>/<season>")
 def get_seasons_episodes(name, season):
@@ -72,6 +79,26 @@ def search():
             'list': search_show_options(request.form['search'])
             }
         return render_template("search_results.html", result=result)
+
+@app.route('/<show_name>/<date>', methods=['POST', 'GET'])
+def tweetsearch(show_name, date):
+    if request.method == 'POST':
+        # ogdate = request.form['date']
+        # date = ogdate.replace("-", " ")
+
+        tweet_query=request.form['tweet-search']
+        # #result = request.form['search']
+
+        start_date = convert_date(date)
+        end_date = addDays(start_date ,1)
+
+        start_date_str = '{:%Y-%m-%d}'.format(start_date)
+        end_date_str = '{:%Y-%m-%d}'.format(end_date)
+        result = {
+            'list': scrape_tweets(tweet_query, start_date_str, end_date_str),
+            }
+        return render_template('tweets.html', result=result, date=date, tweet_query=tweet_query , show_name=show_name)
+
 
 if __name__ == "__main__":
     app.run()                   # run the flask app

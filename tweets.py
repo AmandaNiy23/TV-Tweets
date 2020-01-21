@@ -6,6 +6,8 @@ import time
 import csv
 import io
 import pprint as pp
+
+#Uncomment this for production environment
 import os
 
 chrome_options = webdriver.ChromeOptions()
@@ -15,6 +17,8 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
+#Uncomment this for testing environment
+#browser = webdriver.Chrome()
 
 def tweet_scroller(url):
 
@@ -50,8 +54,8 @@ def get_html(url):
     return html
 
 
-def scrape_tweets(name, start_date, end_date):
-    url = 'https://twitter.com/search?q=' + name + '%20since%3A'+start_date+'%20until%3A'+end_date+'&src=typd'
+def scrape_tweets(tweet_query, start_date, end_date):
+    url = 'https://twitter.com/search?q=' + tweet_query + '%20since%3A'+start_date+'%20until%3A'+end_date+'&src=typd'
     soup = BeautifulSoup(tweet_scroller(url), "html.parser")
 
     list = []

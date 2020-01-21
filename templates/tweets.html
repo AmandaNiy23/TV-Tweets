@@ -1,7 +1,14 @@
 {%extends "index.html"%}
 {% block content %}
 
-      <h1 class="center">{{show_name}} - {{episode_name}}</h1>
+      <h1 class="center">Showing results for "{{tweet_query}}" on {{date}}</h1>
+
+      <form class="search-bar" action="{{url_for('tweetsearch', show_name = show_name, date=date)}}" method="POST">
+        <input type="text" placeholder="More specific search.." name="tweet-search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        <input type="hidden" name="date" value="{{date}}">
+      </form>
+
       {% for key, value in result.items() %}
 
           {% for tweet in value %}
